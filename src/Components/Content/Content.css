@@ -2,10 +2,42 @@
     background-color: #ddd;
     max-width: calc(100vw - 180px);
     height: fit-content;
+    padding: 10px;
+    text-justify: distribute;
+}
+
+h2 {
+    text-align: left;
+    padding-left: 25px;
 }
 
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    height: 230px;
+    overflow-y: hidden;
+    justify-content: center;
+    gap: 10px;
+}
+
+.overflow {
+    overflow-y: visible;
+    height: fit-content;
+    transition: 1s ease-out;
+}
+
+#emp-button {
+    padding: 15px;
+    border-radius: 10px;
+    border: 0px solid;
+    background-color: #333;
+    color: #ddd;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: .15s ease-out;
+}
+
+#emp-button:hover {
+    background-color: brown;
 }

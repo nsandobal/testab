@@ -4,32 +4,36 @@ import './Content.css'
 import EmployeeCard from '../EmployeeCard/EmployeeCard';
 
 const Content = () => {
-    //const [users, setUsers] = useState([null, null, null, null, null])
     const url = 'https://randomuser.me/api/';
     let users = []
-    const [contador, setContador] = useState(0)
-    const [employees, setEmployees] = useState([]);
     const [title, setTitle] = useState("Cargando...")
+    const [employees, setEmployees] = useState([]);
+    const [contador, setContador] = useState(0)
 
-    const downloadRandomUsers = async () => {
+    const cardsContainer = document.querySelector(".cards-container")
+    const empButton = document.querySelector("#emp-button")
+    const [usersShow, setUsersShow] = useState(true)
+
+    const downloadRandomUsers = async (cantidad = 7) => {
         setContador(0)
-        let user
-        user = await axios.get(url)
-        users.push(formatUser(user.data.results[0]))
-        await setContador(contador + 1)
-        user = await axios.get(url)
-        users.push(formatUser(user.data.results[0]))
-        await setContador(contador + 1)
-        user = await axios.get(url)
-        users.push(formatUser(user.data.results[0]))
-        await setContador(contador + 1)
-        user = await axios.get(url)
-        users.push(formatUser(user.data.results[0]))
-        await setContador(contador + 1)
-        user = await axios.get(url)
-        users.push(formatUser(user.data.results[0]))
-        await setContador(contador + 1)
+        let user;
+        for (let i = 0; i < cantidad; i++) {
+            user = await axios.get(url)
+            users.push(formatUser(user.data.results[0]))
+            await setContador(contador + 1)
+        }
         await setEmployees(users)
+    }
+
+    const showAllEmployees = () => {
+        setUsersShow(!usersShow)
+        if (usersShow)  {
+            cardsContainer.classList.add('overflow') 
+            empButton.innerHTML = "Mostrar menos"
+        } else {
+            cardsContainer.classList.remove('overflow')
+            empButton.innerHTML = "Ver todos los empleados"
+        }
     }
 
     useEffect(() => {
@@ -37,7 +41,7 @@ const Content = () => {
         setTitle("Empleados destacados (" + employees.length + ")")
     }, [employees])
 
-    window.onload = () => downloadRandomUsers()
+    window.onload = () => downloadRandomUsers(10)
 
     const formatUser = (userData) => {
         let user = {}
@@ -60,6 +64,8 @@ const Content = () => {
                     </>
                 })}
             </div>
+            <button id="emp-button" onClick={showAllEmployees}>Ver todos los empleados</button>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium molestiae, nihil nulla repellendus aut debitis velit quae necessitatibus maxime voluptatibus, recusandae odio! Eaque voluptates maiores laborum repudiandae quasi beatae, est molestias, iste minus dolor repellat magni neque? Iste tenetur placeat facere maiores harum illum maxime beatae ullam quia repellendus quisquam, dicta inventore deleniti minus ipsum quos voluptas fugiat praesentium quae tempore. Nesciunt obcaecati qui cum porro error quisquam dolore neque ad, perspiciatis ipsum laudantium aspernatur at distinctio, quos excepturi mollitia eum aperiam eos iste necessitatibus voluptas harum suscipit! Distinctio, illum quidem voluptate molestiae rerum illo nobis accusamus impedit vel hic voluptatum id. Laudantium veritatis consequatur aliquid nihil ratione, obcaecati voluptate totam tempore, iusto hic ad, tempora pariatur perferendis nesciunt!</p>
         </div>
     )
 }
