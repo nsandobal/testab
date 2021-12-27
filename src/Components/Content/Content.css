@@ -17,7 +17,7 @@ h2 {
     height: 230px;
     overflow-y: hidden;
     justify-content: center;
-    gap: 10px;
+    gap: 25px;
 }
 
 .overflow {

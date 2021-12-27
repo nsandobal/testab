@@ -41,7 +41,7 @@ const Content = () => {
         setTitle("Empleados destacados (" + employees.length + ")")
     }, [employees])
 
-    window.onload = () => downloadRandomUsers(10)
+    window.onload = () => downloadRandomUsers(15)
 
     const formatUser = (userData) => {
         let user = {}
