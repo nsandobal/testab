@@ -1,3 +1,11 @@
 #container {
     background-color: #ddd;
+    max-width: calc(100vw - 180px);
+    height: fit-content;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }

@@ -1,9 +1,9 @@
 #sidebar {
-    background-color: #777;
     text-align: left;
     min-width: 180px;
     padding-top: 20px;
     color: white;
+    height: calc(100% - 50px);
 }
 
 #sidebar h3 {
@@ -23,4 +23,5 @@
 
 #sidebar ul li:hover {
     background-color: #aaa;
+    cursor: pointer;
 }
