@@ -66,6 +66,9 @@ const Content = () => {
             </div>
             <button id="emp-button" onClick={showAllEmployees}>Ver todos los empleados</button>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium molestiae, nihil nulla repellendus aut debitis velit quae necessitatibus maxime voluptatibus, recusandae odio! Eaque voluptates maiores laborum repudiandae quasi beatae, est molestias, iste minus dolor repellat magni neque? Iste tenetur placeat facere maiores harum illum maxime beatae ullam quia repellendus quisquam, dicta inventore deleniti minus ipsum quos voluptas fugiat praesentium quae tempore. Nesciunt obcaecati qui cum porro error quisquam dolore neque ad, perspiciatis ipsum laudantium aspernatur at distinctio, quos excepturi mollitia eum aperiam eos iste necessitatibus voluptas harum suscipit! Distinctio, illum quidem voluptate molestiae rerum illo nobis accusamus impedit vel hic voluptatum id. Laudantium veritatis consequatur aliquid nihil ratione, obcaecati voluptate totam tempore, iusto hic ad, tempora pariatur perferendis nesciunt!</p>
+            <div className='video-container'>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/fkOz33So_p8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
     )
 }
