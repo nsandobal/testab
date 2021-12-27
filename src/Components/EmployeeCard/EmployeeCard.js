@@ -4,9 +4,11 @@ const EmployeeCard = (props) => {
     return (
         <div className="employee-card">
             <img className="employee-photo" src={props.photo} alt={"Foto de " + props.name}></img>
-            <li className='employee-data'>{props.name}</li>
-            <li className='employee-data'>{props.age}</li>
-            <li className='employee-data'>{props.tel}</li>
+            <div className='employee-data'>
+                <li id="name">{props.name}</li>
+                <li>{props.age} años</li>
+                <li>{props.tel}</li>
+            </div>
         </div>
     )
 }
