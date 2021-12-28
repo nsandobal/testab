@@ -41,7 +41,7 @@ const Content = () => {
         setTitle("Empleados destacados (" + employees.length + ")")
     }, [employees])
 
-    window.onload = () => downloadRandomUsers(15)
+    window.onload = () => downloadRandomUsers(8)
 
     const formatUser = (userData) => {
         let user = {}
@@ -58,9 +58,7 @@ const Content = () => {
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum excepturi culpa perspiciatis id, sapiente soluta eligendi illo reiciendis omnis sunt iure debitis repellendus consequuntur rerum, ipsa minima incidunt. Commodi, perferendis!</p>
             <h2>{title}</h2>
             <div className='cards-container'>
-                {
-                    employees.map((e, i) => <EmployeeCard key={"emp"+i} name={e.name} age={e.age} photo={e.photo} tel={e.tel} />)
-                }
+                { employees.map((e, i) => <EmployeeCard key={"emp"+i} name={e.name} age={e.age} photo={e.photo} tel={e.tel} />) }
             </div>
             <button id="emp-button" onClick={showAllEmployees}>Ver todos los empleados</button>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium molestiae, nihil nulla repellendus aut debitis velit quae necessitatibus maxime voluptatibus, recusandae odio! Eaque voluptates maiores laborum repudiandae quasi beatae, est molestias, iste minus dolor repellat magni neque? Iste tenetur placeat facere maiores harum illum maxime beatae ullam quia repellendus quisquam, dicta inventore deleniti minus ipsum quos voluptas fugiat praesentium quae tempore. Nesciunt obcaecati qui cum porro error quisquam dolore neque ad, perspiciatis ipsum laudantium aspernatur at distinctio, quos excepturi mollitia eum aperiam eos iste necessitatibus voluptas harum suscipit! Distinctio, illum quidem voluptate molestiae rerum illo nobis accusamus impedit vel hic voluptatum id. Laudantium veritatis consequatur aliquid nihil ratione, obcaecati voluptate totam tempore, iusto hic ad, tempora pariatur perferendis nesciunt!</p>
