@@ -8,7 +8,7 @@ const Content = () => {
     let users = []
     const [title, setTitle] = useState("Cargando...")
     const [employees, setEmployees] = useState([]);
-    const [contador, setContador] = useState(0)
+    const [contador, setContador] = useState("Cargando...")
 
     const cardsContainer = document.querySelector(".cards-container")
     const empButton = document.querySelector("#emp-button")

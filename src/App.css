@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+* {
+  font-family: 'Quicksand', sans-serif;  
+  letter-spacing: 1px;
+}
+
 body {
   background-color: grey;
 }
