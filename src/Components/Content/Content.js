@@ -14,6 +14,7 @@ const Content = () => {
     const cardsContainer = document.querySelector(".cards-container")
     const empButton = document.querySelector("#emp-button")
     const [usersShow, setUsersShow] = useState(true)
+    const [showEmp, setShowEmp] = useState(true)
 
     const downloadRandomUsers = async (cantidad = 7) => {
         setContador(0)
@@ -37,6 +38,15 @@ const Content = () => {
         }
     }
 
+    const showEmpleados = () => {
+        setUsersShow(!showEmp)
+        if (showEmp)  {
+            empButton.innerHTML = "Mostrar +"
+        } else {
+            empButton.innerHTML = "Ver -"
+        }
+    }
+
     useEffect(() => {
         console.log(employees)
         setTitle("Empleados destacados (" + employees.length + ")")
@@ -46,6 +56,7 @@ const Content = () => {
 
     const formatUser = (userData) => {
         let user = {}
+        user.gender = userData.gender
         user.name = userData.name.first
         user.photo = userData.picture.large
         user.age = userData.dob.age
@@ -59,10 +70,20 @@ const Content = () => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quaerat culpa, quam ipsa sit illum cupiditate dolorem. Temporibus dolorem cumque possimus eum sapiente, debitis laudantium earum nostrum! Enim, labore quisquam!</p>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum excepturi culpa perspiciatis id, sapiente soluta eligendi illo reiciendis omnis sunt iure debitis repellendus consequuntur rerum, ipsa minima incidunt. Commodi, perferendis!</p>
             <h2>{title}</h2>
-            <div className='cards-container'>
-                { employees.map((e, i) => <EmployeeCard key={"emp"+i} name={e.name} age={e.age} photo={e.photo} tel={e.tel} />) }
-            </div>
-            <button id="emp-button" onClick={showAllEmployees}>Ver todos los empleados</button>
+            {
+                showEmp && 
+                <div className='empleados empleados-flex'>
+                    <div className='cards-container overflow'>
+                        <h3>Empleados Masculinos</h3>
+                        { employees.filter(e => e.gender === "male").map((e, i) => <EmployeeCard key={"emp"+i} name={e.name} age={e.age} photo={e.photo} tel={e.tel} />) }
+                    </div> 
+                    <div className='cards-container overflow'>
+                        <h3>Empleados Femeninos</h3>
+                        { employees.filter(e => e.gender === "female").map((e, i) => <EmployeeCard key={"emp"+i} name={e.name} age={e.age} photo={e.photo} tel={e.tel} />) }
+                    </div> 
+                </div>
+            }         
+            <button id="boton2" onClick={showEmpleados}>Ver empleados</button>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium molestiae, nihil nulla repellendus aut debitis velit quae necessitatibus maxime voluptatibus, recusandae odio! Eaque voluptates maiores laborum repudiandae quasi beatae, est molestias, iste minus dolor repellat magni neque? Iste tenetur placeat facere maiores harum illum maxime beatae ullam quia repellendus quisquam, dicta inventore deleniti minus ipsum quos voluptas fugiat praesentium quae tempore. Nesciunt obcaecati qui cum porro error quisquam dolore neque ad, perspiciatis ipsum laudantium aspernatur at distinctio, quos excepturi mollitia eum aperiam eos iste necessitatibus voluptas harum suscipit! Distinctio, illum quidem voluptate molestiae rerum illo nobis accusamus impedit vel hic voluptatum id. Laudantium veritatis consequatur aliquid nihil ratione, obcaecati voluptate totam tempore, iusto hic ad, tempora pariatur perferendis nesciunt!</p>
             <div className='video-container'>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/fkOz33So_p8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
