@@ -6,7 +6,7 @@
     text-justify: distribute;
 }
 
-h2 {
+.title {
     text-align: left;
     padding-left: 25px;
 }
@@ -14,8 +14,8 @@ h2 {
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    max-height: 230px;
     overflow-y: hidden;
+    max-height: 0;
     justify-content: center;
     gap: 25px;
 }
@@ -26,7 +26,7 @@ h2 {
     transition: 1s ease-out;
 }
 
-#emp-button {
+button {
     padding: 15px;
     border-radius: 10px;
     border: 0px solid;
@@ -38,8 +38,15 @@ h2 {
     transition: .15s ease-out;
 }
 
-#emp-button:hover {
+button:hover {
     background-color: brown;
+}
+
+.box-container {
+    background-color: white;
+    border-radius: 15px;
+    margin: 5px 15px;
+    padding: 10px 0;
 }
 
 .video-container {

@@ -12,9 +12,15 @@ const Content = () => {
     const [contador, setContador] = useState("Cargando...")
 
     const cardsContainer = document.querySelector(".cards-container")
-    const empButton = document.querySelector("#emp-button")
-    const [usersShow, setUsersShow] = useState(true)
-    const [showEmp, setShowEmp] = useState(true)
+
+    const maleEmployees = document.querySelector("#male-employees")
+    const femaleEmployees = document.querySelector("#female-employees")
+
+    const maleEmpButton = document.querySelector("#male-emp-button")
+    const femaleEmpButton = document.querySelector("#female-emp-button")
+
+    const [showMalesFlag, setShowMalesFlag] = useState(true)
+    const [showFemalesFlag, setShowFemalesFlag] = useState(true)
 
     const downloadRandomUsers = async (cantidad = 7) => {
         setContador(0)
@@ -27,30 +33,32 @@ const Content = () => {
         await setEmployees(users)
     }
 
-    const showAllEmployees = () => {
-        setUsersShow(!usersShow)
-        if (usersShow)  {
-            cardsContainer.classList.add('overflow') 
-            empButton.innerHTML = "Mostrar menos"
+    const showMales = () => {
+        setShowMalesFlag(!showMalesFlag)
+        if (showMalesFlag)  {
+            maleEmployees.classList.add('overflow') 
+            maleEmpButton.innerHTML = "Mostrar empleados"
         } else {
-            cardsContainer.classList.remove('overflow')
-            empButton.innerHTML = "Ver todos los empleados"
+            maleEmployees.classList.remove('overflow') 
+            maleEmpButton.innerHTML = "Ocultar empleados"
         }
     }
 
-    const showEmpleados = () => {
-        setUsersShow(!showEmp)
-        if (showEmp)  {
-            empButton.innerHTML = "Mostrar +"
+    const showFemales = () => {
+        setShowFemalesFlag(!showFemalesFlag)
+        if (showFemalesFlag)  {
+            femaleEmployees.classList.add('overflow') 
+            femaleEmpButton.innerHTML = "Mostrar empleadas"
         } else {
-            empButton.innerHTML = "Ver -"
+            femaleEmployees.classList.remove('overflow') 
+            femaleEmpButton.innerHTML = "Ocultar empleadas"
         }
     }
 
     useEffect(() => {
         console.log(employees)
-        setTitle("Empleados destacados (" + employees.length + ")")
-    }, [employees])
+        setTitle("Santander Team (" + contador + ")")
+    }, [employees, contador])
 
     window.onload = () => downloadRandomUsers(8)
 
@@ -69,21 +77,39 @@ const Content = () => {
             <Alert />
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quaerat culpa, quam ipsa sit illum cupiditate dolorem. Temporibus dolorem cumque possimus eum sapiente, debitis laudantium earum nostrum! Enim, labore quisquam!</p>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum excepturi culpa perspiciatis id, sapiente soluta eligendi illo reiciendis omnis sunt iure debitis repellendus consequuntur rerum, ipsa minima incidunt. Commodi, perferendis!</p>
-            <h2>{title}</h2>
-            {
-                showEmp && 
-                <div className='empleados empleados-flex'>
-                    <div className='cards-container overflow'>
-                        <h3>Empleados Masculinos</h3>
-                        { employees.filter(e => e.gender === "male").map((e, i) => <EmployeeCard key={"emp"+i} name={e.name} age={e.age} photo={e.photo} tel={e.tel} />) }
-                    </div> 
-                    <div className='cards-container overflow'>
-                        <h3>Empleados Femeninos</h3>
-                        { employees.filter(e => e.gender === "female").map((e, i) => <EmployeeCard key={"emp"+i} name={e.name} age={e.age} photo={e.photo} tel={e.tel} />) }
-                    </div> 
+            <h2 className='title'>{ "Santander Team" }</h2>
+            <div className='empleados empleados-flex'>
+                <div className='box-container'>
+                    <h2>Empleados</h2>
+                    {
+                        showMalesFlag &&
+                        <div id='male-employees' className='cards-container overflow'>
+                            { 
+                                employees
+                                .filter(e => e.gender === "male")
+                                .map((e, i) => <EmployeeCard key={"emp"+i} name={e.name} age={e.age} photo={e.photo} tel={e.tel} />) 
+                            }
+                        </div> 
+                    }
+                    <button id="male-emp-button" onClick={showMales}>Ocultar empleados</button>
                 </div>
-            }         
-            <button id="boton2" onClick={showEmpleados}>Ver empleados</button>
+
+                <div className='box-container'>
+                    <h2>Empleadas</h2>
+                    {
+                        showFemalesFlag &&
+                        <div id='female-employees' className='cards-container overflow'>
+                            { 
+                                employees
+                                .filter(e => e.gender === "female")
+                                .map((e, i) => <EmployeeCard key={"emp"+i} name={e.name} age={e.age} photo={e.photo} tel={e.tel} />) 
+                            }
+                        </div> 
+                    }
+                    <button id="female-emp-button" onClick={showFemales}>Ocultar empleadas</button>
+                </div>
+
+            </div>     
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium molestiae, nihil nulla repellendus aut debitis velit quae necessitatibus maxime voluptatibus, recusandae odio! Eaque voluptates maiores laborum repudiandae quasi beatae, est molestias, iste minus dolor repellat magni neque? Iste tenetur placeat facere maiores harum illum maxime beatae ullam quia repellendus quisquam, dicta inventore deleniti minus ipsum quos voluptas fugiat praesentium quae tempore. Nesciunt obcaecati qui cum porro error quisquam dolore neque ad, perspiciatis ipsum laudantium aspernatur at distinctio, quos excepturi mollitia eum aperiam eos iste necessitatibus voluptas harum suscipit! Distinctio, illum quidem voluptate molestiae rerum illo nobis accusamus impedit vel hic voluptatum id. Laudantium veritatis consequatur aliquid nihil ratione, obcaecati voluptate totam tempore, iusto hic ad, tempora pariatur perferendis nesciunt!</p>
             <div className='video-container'>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/fkOz33So_p8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
