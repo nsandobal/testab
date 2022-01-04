@@ -7,7 +7,7 @@ import Alert from '../Alert/Alert';
 const Content = () => {
     const url = 'https://randomuser.me/api/';
     let users = []
-    const [title, setTitle] = useState("Cargando...")
+    const [title, setTitle] = useState("Santander Team")
     const [employees, setEmployees] = useState([]);
     const [contador, setContador] = useState("Cargando...")
 
@@ -22,7 +22,7 @@ const Content = () => {
     const [showMalesFlag, setShowMalesFlag] = useState(true)
     const [showFemalesFlag, setShowFemalesFlag] = useState(true)
 
-    const downloadRandomUsers = async (cantidad = 7) => {
+    const downloadRandomUsers = async (cantidad = 6) => {
         setContador(0)
         let user;
         for (let i = 0; i < cantidad; i++) {
@@ -36,31 +36,35 @@ const Content = () => {
     const showMales = () => {
         setShowMalesFlag(!showMalesFlag)
         if (showMalesFlag)  {
-            maleEmployees.classList.add('overflow') 
             maleEmpButton.innerHTML = "Mostrar empleados"
+            maleEmployees.classList.add('overflow') 
+            console.log(showMalesFlag)
         } else {
-            maleEmployees.classList.remove('overflow') 
             maleEmpButton.innerHTML = "Ocultar empleados"
+            maleEmployees.classList.remove('overflow') 
+            console.log(showMalesFlag)
         }
     }
 
     const showFemales = () => {
         setShowFemalesFlag(!showFemalesFlag)
         if (showFemalesFlag)  {
-            femaleEmployees.classList.add('overflow') 
             femaleEmpButton.innerHTML = "Mostrar empleadas"
+            femaleEmployees.classList.add('overflow') 
+            console.log(showFemalesFlag)
         } else {
-            femaleEmployees.classList.remove('overflow') 
             femaleEmpButton.innerHTML = "Ocultar empleadas"
+            femaleEmployees.classList.remove('overflow') 
+            console.log(showFemalesFlag)
         }
     }
 
     useEffect(() => {
         console.log(employees)
-        setTitle("Santander Team (" + contador + ")")
-    }, [employees, contador])
+        setTitle("Santander Team (" + employees.length + ")")
+    }, [employees])
 
-    window.onload = () => downloadRandomUsers(8)
+    window.onload = () => downloadRandomUsers(5)
 
     const formatUser = (userData) => {
         let user = {}
@@ -77,10 +81,10 @@ const Content = () => {
             <Alert />
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quaerat culpa, quam ipsa sit illum cupiditate dolorem. Temporibus dolorem cumque possimus eum sapiente, debitis laudantium earum nostrum! Enim, labore quisquam!</p>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum excepturi culpa perspiciatis id, sapiente soluta eligendi illo reiciendis omnis sunt iure debitis repellendus consequuntur rerum, ipsa minima incidunt. Commodi, perferendis!</p>
-            <h2 className='title'>{ "Santander Team" }</h2>
+            <h2 className='title'>{ title }</h2>
             <div className='empleados empleados-flex'>
                 <div className='box-container'>
-                    <h2>Empleados</h2>
+                    <h2>Empleados destacados</h2>
                     {
                         showMalesFlag &&
                         <div id='male-employees' className='cards-container overflow'>
@@ -95,7 +99,7 @@ const Content = () => {
                 </div>
 
                 <div className='box-container'>
-                    <h2>Empleadas</h2>
+                    <h2>Empleadas destacadas</h2>
                     {
                         showFemalesFlag &&
                         <div id='female-employees' className='cards-container overflow'>

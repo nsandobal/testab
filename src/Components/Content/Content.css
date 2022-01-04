@@ -14,16 +14,13 @@
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    overflow-y: hidden;
-    max-height: 0;
+    max-height: 50px;
     justify-content: center;
     gap: 25px;
 }
 
 .overflow {
-    overflow-y: visible;
     max-height: fit-content;
-    transition: 1s ease-out;
 }
 
 button {
